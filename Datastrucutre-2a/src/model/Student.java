@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package datastrucutre2a.models;
+package model;
 
 /**
  *

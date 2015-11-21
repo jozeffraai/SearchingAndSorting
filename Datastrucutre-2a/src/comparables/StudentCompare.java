@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastrucutre2a.models.comparables;
+package comparables;
 
-import datastrucutre2a.models.Student;
+import model.Student;
 import java.util.Comparator;
 
 /**

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package datastrucutre2a;
+package main;
 
-import datastrucutre2a.models.*;
+import model.Student;
 import java.text.DecimalFormat;
 
 
@@ -14,11 +14,6 @@ import java.text.DecimalFormat;
  * @author Joost & Mohamed
  */
 public class Main {
-
-    private static int studentN = 50060000;
-    private static String[] classArray = null;
-    private static int[] classAmount = new int[4];
-    private static int[] studieAmount = new int[4];
 
     private static long totalTimeBucket;
     private static long totalTimeGen;
