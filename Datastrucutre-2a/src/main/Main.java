@@ -16,9 +16,7 @@ import sort.Quicksort;
  */
 public class Main {
     
-    private static long totalTimeBucket;
-    private static long totalTimeGen;
-    private static long totalTimeInsertion;
+    private static long totalTimeSorting;
     
     
     /**
@@ -26,13 +24,16 @@ public class Main {
      */
     public static void main(String[] args) {
          
-        Student[] students = generateStudents(20);
-        Quicksort q = new Quicksort();
+        Student[] students = generateStudents(20000);
         
-        q.sort(students);
+        long startTimeGen = System.currentTimeMillis();
+        Quicksort.qsort(students, 0, students.length-1);
+        long endTimeGen = System.currentTimeMillis();
         
-        for(Student s : students)
-            System.out.println(s.toString());
+        totalTimeSorting = endTimeGen - startTimeGen;
+        
+        System.out.println("_____Time_______");
+        System.out.println(totalTimeSorting);
     }
 
     public static Student[] generateStudents(int n) {
@@ -54,7 +55,6 @@ public class Main {
         }
         
         long endTimeGen = System.nanoTime();
-        totalTimeGen = endTimeGen - startTimeGen;
         return students;
     }
 
@@ -72,7 +72,6 @@ public class Main {
     }
 
     public static Student[] insertionSortGrade(Student array[]) {
-        long startTimeInsertion = System.nanoTime();
         for (int i = 0; i < array.length; i++) {
             int j = i;
             Student B = array[i];
@@ -82,8 +81,6 @@ public class Main {
             }
             array[j] = B;
         }
-        long endTimeInsertion = System.nanoTime();
-        totalTimeInsertion = endTimeInsertion - startTimeInsertion;
         return array;
     }
 }

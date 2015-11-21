@@ -10,7 +10,7 @@ package model;
  *
  * @author Joost
  */
-public class Student {
+public class Student implements Comparable{
     
     private int studentNr;
     private double grade;
@@ -40,5 +40,14 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" + "studentNr=" + studentNr + ", grade=" + grade + '}';
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Student student = (Student) t;
+        if(this.grade == student.grade){
+            return Integer.compare(this.studentNr, student.studentNr);
+        }
+        return Double.compare(this.grade, student.grade);
     }
 }

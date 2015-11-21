@@ -5,60 +5,36 @@
  */
 package sort;
 
-import comparables.StudentCompare;
 import model.Student;
 
 public class Quicksort {
-    
-  private StudentCompare compare;
-  private Student[] students;
-  private int number;
-  
-  public Quicksort(){}
-  
-  public void sort(Student[] students) {
-     
-    if (students ==null ){
-      return;
+
+    public static void qsort(Student[] arr, int a, int b) {
+
+        if (a < b) {
+            int i = a, j = b;
+            Student x = arr[(i + j) / 2];
+
+            do {
+                while (arr[i].compareTo(x) < 0) {
+                    i++;
+                }
+                while (x.compareTo(arr[j]) < 0) {
+                    j--;
+                }
+
+                if (i <= j) {
+                    Student tmp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = tmp;
+                    i++;
+                    j--;
+                }
+
+            } while (i <= j);
+
+            qsort(arr, a, j);
+            qsort(arr, i, b);
+        }
     }
-    this.students = students;
-    number = students.length;
-    quicksort(0, number - 1);
-  }
-
-  private void quicksort(int low, int high) {
-    int i = low, j = high;
-
-    Student pivot = students[low + (high-low)/2];
-
-
-    while (i <= j) {
-
-      while (students[i].getGrade() < pivot.getGrade()) {
-        i++;
-      }
-
-      while (students[j].getGrade() > pivot.getGrade()) {
-        j--;
-      }
-
-      if (i <= j) {
-        exchange(i, j);
-        i++;
-        j--;
-      }
-    }
-
-    if (low < j)
-      quicksort(low, j);
-    if (i < high)
-      quicksort(i, high);
-  }
-
-  private void exchange(int i, int j) {
-    Student temp = students[i];
-    students[i] = students[j];
-    students[j] = temp;
-  }
-    
 }
