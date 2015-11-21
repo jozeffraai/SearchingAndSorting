@@ -7,6 +7,7 @@ package main;
 
 import model.Student;
 import java.text.DecimalFormat;
+import sort.Quicksort;
 
 
 /**
@@ -14,20 +15,24 @@ import java.text.DecimalFormat;
  * @author Joost & Mohamed
  */
 public class Main {
-
+    
     private static long totalTimeBucket;
     private static long totalTimeGen;
     private static long totalTimeInsertion;
-
+    
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+         
         Student[] students = generateStudents(20);
+        Quicksort q = new Quicksort();
+        
+        q.sort(students);
         
         for(Student s : students)
-        System.out.println(s.toString());
+            System.out.println(s.toString());
     }
 
     public static Student[] generateStudents(int n) {
