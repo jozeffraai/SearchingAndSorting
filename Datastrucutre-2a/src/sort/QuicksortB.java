@@ -7,7 +7,7 @@ package sort;
 
 import model.Student;
 
-public class Quicksort {
+public class QuicksortB {
    
 
     public static void sort(Student[] arr, int lo, int hi) {

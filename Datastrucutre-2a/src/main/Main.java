@@ -7,7 +7,8 @@ package main;
 
 import model.Student;
 import java.text.DecimalFormat;
-import sort.Quicksort;
+import sort.QuicksortA;
+import sort.QuicksortB;
 
 
 /**
@@ -27,7 +28,8 @@ public class Main {
         Student[] students = generateStudents(20);
         
         long startTimeGen = System.currentTimeMillis();
-        Quicksort.sort(students, 0, students.length-1);
+        //QuicksortB.sort(students, 0, students.length-1);
+        QuicksortA.sort(students, 0, students.length-1);
         long endTimeGen = System.currentTimeMillis();
         
         totalTimeSorting = endTimeGen - startTimeGen;
