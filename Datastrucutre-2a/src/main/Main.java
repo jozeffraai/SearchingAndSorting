@@ -24,13 +24,16 @@ public class Main {
      */
     public static void main(String[] args) {
          
-        Student[] students = generateStudents(20000);
+        Student[] students = generateStudents(20);
         
         long startTimeGen = System.currentTimeMillis();
-        Quicksort.qsort(students, 0, students.length-1);
+        Quicksort.sort(students, 0, students.length-1);
         long endTimeGen = System.currentTimeMillis();
         
         totalTimeSorting = endTimeGen - startTimeGen;
+        
+        for(Student s : students)
+            System.out.println(s.toString());
         
         System.out.println("_____Time_______");
         System.out.println(totalTimeSorting);

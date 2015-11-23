@@ -8,33 +8,26 @@ package sort;
 import model.Student;
 
 public class Quicksort {
+   
 
-    public static void qsort(Student[] arr, int a, int b) {
-
-        if (a < b) {
-            int i = a, j = b;
-            Student x = arr[(i + j) / 2];
-
-            do {
-                while (arr[i].compareTo(x) < 0) {
-                    i++;
-                }
-                while (x.compareTo(arr[j]) < 0) {
-                    j--;
-                }
-
-                if (i <= j) {
-                    Student tmp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = tmp;
-                    i++;
-                    j--;
-                }
-
-            } while (i <= j);
-
-            qsort(arr, a, j);
-            qsort(arr, i, b);
-        }
+    public static void sort(Student[] arr, int lo, int hi) {
+        
+            if(hi <= lo) return;
+            int lt = lo, i = lo+1, gt = hi;
+            Student x = arr[lo];
+            
+            while (i <= gt){
+                if(arr[i].compareTo(x) < 0) exch(arr, lt++, i++);
+                else if(x.compareTo(arr[i]) < 0) exch(arr, i, gt--);
+                else i++;
+            }
+            sort(arr, lo, lt - 1);
+            sort(arr, gt + 1, hi);
+    }
+    
+    private static void exch(Student[] arr, int i, int j){ 
+        Student tmp = arr[i]; 
+        arr[i] = arr[j]; 
+        arr[j] = tmp; 
     }
 }
