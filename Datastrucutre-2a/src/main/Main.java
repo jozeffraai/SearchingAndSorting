@@ -7,36 +7,54 @@ package main;
 
 import model.Student;
 import java.text.DecimalFormat;
-import sort.QuicksortA;
+import sort.BinarySearchTree;
 import sort.QuicksortB;
 
 
-/**
- *
- * @author Joost & Mohamed
- */
+
 public class Main {
-    
+
     private static long totalTimeSorting;
-    
-    
+    private static BinarySearchTree bst;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         
-        Student[] students = generateStudents(20);
+
+        Student[] students = generateStudents(10);
+        Student key;
+        int n;
+        
+        BinarySearchTree<Double, Integer> st = new BinarySearchTree<>();
+        for (int i = 0; i < students.length; i++) {
+            key = students[i];
+            st.put(key.getGrade(), key.getStudentNr());
+        }
+       
+       System.out.println("_____Get_____");
+        
+        for (int i = 0; i < students.length; i++) {
+            n = st.get(students[i].getGrade());
+            System.out.println(n);
+        }
         
         long startTimeGen = System.currentTimeMillis();
-        //QuicksortB.sort(students, 0, students.length-1);
-        QuicksortA.sort(students, 0, students.length-1);
+        QuicksortB.sort(students, 0, students.length - 1);
+        //QuicksortA.sort(students, 0, students.length-1);
         long endTimeGen = System.currentTimeMillis();
         
+        System.out.println("_____Rank______");
+        
+        for (int i = 0; i < students.length; i++) {
+            n = st.rank(students[i].getGrade());
+            System.out.println(students[i].getGrade() + " " +n);
+        }
+
         totalTimeSorting = endTimeGen - startTimeGen;
-        
-        for(Student s : students)
-            System.out.println(s.toString());
-        
+
+//        for(Student s : students)
+//            System.out.println(s.toString());
         System.out.println("_____Time_______");
         System.out.println(totalTimeSorting);
     }
@@ -47,9 +65,9 @@ public class Main {
         Student[] students = new Student[n];
 
         DecimalFormat df = new DecimalFormat("#.#");
-        
+
         int studentNr = 500000000;
-        
+
         for (int i = 0; i < n; i++) {
             double random = Math.random() * (1.0 - 10.0) + 10;
             String gradeFormat = df.format(random);
@@ -58,7 +76,7 @@ public class Main {
             students[i] = new Student(studentNr, grade);
 
         }
-        
+
         long endTimeGen = System.nanoTime();
         return students;
     }
